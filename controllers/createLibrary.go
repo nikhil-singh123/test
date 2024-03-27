@@ -30,7 +30,7 @@ func RegLibrary(c *gin.Context) {
 			return
 		}
 	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "Name already exists. Choose another name"})
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Name already exists. Choose different name"})
 		return
 	}
 

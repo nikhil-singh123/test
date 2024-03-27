@@ -37,11 +37,6 @@ func AddBook(c *gin.Context) {
 	b.TotalCopies = book.TotalCopies
 	b.AvailableCopies = book.AvailableCopies
 
-	// postBody1, _ := json.Marshal(b.ISBN)
-	// postBody2, _ := json.Marshal(b.Title)
-	// body = " ISBN Number : " + string(postBody1) + "      Book Title : " + string(postBody2)
-	// subject := "New book is added"
-
 	check := b.CheckBook()
 
 	if !check {
@@ -51,8 +46,6 @@ func AddBook(c *gin.Context) {
 			return
 		}
 
-		// go SendMsg(subject, body)
-
 	} else {
 		_, err := b.IncreaseBook()
 		if err != nil {
@@ -60,9 +53,7 @@ func AddBook(c *gin.Context) {
 			return
 		}
 
-		// go SendMsg(subject, body)
-
-		c.JSON(http.StatusAccepted, gin.H{"message": "Book is already existed. Increased the Total no. of copies of book"})
+		c.JSON(http.StatusAccepted, gin.H{"message": "Book already exists. Increased the Total no. of copies of book"})
 		return
 	}
 

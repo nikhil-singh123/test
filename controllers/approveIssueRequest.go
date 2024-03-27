@@ -72,7 +72,7 @@ func ApproveRejectIssueRequest(c *gin.Context) {
 	issueRegistery.ISBN = requestEvents.BookID
 	issueRegistery.ReaderId = requestEvents.ReaderId
 	issueRegistery.IssueApproverID = id
-	issueRegistery.IssueStatus = "approve"
+	issueRegistery.IssueStatus = "approved"
 	issueRegistery.IssueDate = time.Now()
 	issueRegistery.ExpectedReturnDate = time.Now().AddDate(0, 0, 7)
 
