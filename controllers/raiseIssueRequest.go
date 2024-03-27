@@ -20,7 +20,7 @@ func RaiseIssueRequest(c *gin.Context) {
 		return
 	}
 	var book models.BookInventory
-	if err := models.DB.Where("isbn = ?", ri.BookID).First(&book).Error; err != nil {
+	if err := models.DB.Where("isbn = ?", ri.BookID).Find(&book).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"message": "Book is not Available"})
 		return
 	}
@@ -33,7 +33,7 @@ func RaiseIssueRequest(c *gin.Context) {
 		return
 	}
 	var user models.Users
-	if err := models.DB.Where("email = ?", Email).First(&user).Error; err != nil {
+	if err := models.DB.Where("email = ?", Email).Find(&user).Error; err != nil {
 		return
 	}
 

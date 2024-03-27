@@ -37,7 +37,7 @@ func UpdateBook(c *gin.Context) {
 func UpdateISBN(c *gin.Context) {
 	isbn := c.Param("isbn")
 	var book models.BookInventory
-	if err := models.DB.Where("isbn = ?", isbn).First(&book).Error; err != nil {
+	if err := models.DB.Where("isbn = ?", isbn).Find(&book).Error; err != nil {
 		return
 	}
 	c.JSON(http.StatusOK, book)

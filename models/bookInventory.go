@@ -13,7 +13,7 @@ type BookInventory struct {
 
 func (b *BookInventory) CheckBook() bool {
 	var bk BookInventory
-	if err := DB.Where("ISBN = ?", b.ISBN).First(&bk).Error; err != nil {
+	if err := DB.Where("ISBN = ?", b.ISBN).Find(&bk).Error; err != nil {
 		return false
 	}
 	return true
@@ -27,7 +27,7 @@ func (b *BookInventory) NewBook() (*BookInventory, error) {
 }
 func (b *BookInventory) IncreaseBook() (*BookInventory, error) {
 	var bk BookInventory
-	if err := DB.Where("ISBN = ?", b.ISBN).First(&bk).Error; err != nil {
+	if err := DB.Where("ISBN = ?", b.ISBN).Find(&bk).Error; err != nil {
 		return &BookInventory{}, err
 	}
 	bk.TotalCopies = bk.TotalCopies + b.TotalCopies
@@ -42,7 +42,7 @@ func (b *BookInventory) IncreaseBook() (*BookInventory, error) {
 func (b *BookInventory) DecreaseBook(no uint64) (*BookInventory, error) {
 	n := no
 	var bk BookInventory
-	if err := DB.Where("ISBN = ?", b.ISBN).First(&bk).Error; err != nil {
+	if err := DB.Where("ISBN = ?", b.ISBN).Find(&bk).Error; err != nil {
 		return &BookInventory{}, err
 	}
 	if bk.AvailableCopies < n {
@@ -59,7 +59,7 @@ func (b *BookInventory) DecreaseBook(no uint64) (*BookInventory, error) {
 
 func (b *BookInventory) UpdateDetails() (*BookInventory, error) {
 	var bk BookInventory
-	if err := DB.Where("ISBN = ?", b.ISBN).First(&bk).Error; err != nil {
+	if err := DB.Where("ISBN = ?", b.ISBN).Find(&bk).Error; err != nil {
 		return &BookInventory{}, err
 	}
 	bk.ISBN = b.ISBN

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remove Book</title>
+  <link rel="stylesheet" href="/static/rstyle.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Remove Book</h1>
+    <form id="removeBookForm">
+      <label for="isbn">ISBN:</label>
+      <input type="text" id="isbn" name="isbn" required><br>
+      <label for="TotalCopies">Number of Copies:</label>
+      <input type="text" id="TotalCopies" name="TotalCopies" required><br>
+      
+      
+      
+      <button type="submit">Remove Book</button>
+    </form>
+    <div id="message"></div>
+  </div>
+ 
+  <script src="/static/rscript.js"></script>
+</body>
+</html>

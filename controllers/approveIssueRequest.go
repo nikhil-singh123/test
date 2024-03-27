@@ -22,14 +22,14 @@ func ApproveRejectIssueRequest(c *gin.Context) {
 	}
 
 	var user models.Users
-	if err := models.DB.Where("email = ?", Email).First(&user).Error; err != nil {
+	if err := models.DB.Where("email = ?", Email).Find(&user).Error; err != nil {
 		c.JSON(http.StatusBadRequest, err)
 		return
 	}
 	id := user.ID
 
 	var requestEvents models.RequestEvents
-	if err := models.DB.Where("req_id = ?", ri.ReqID).First(&requestEvents).Error; err != nil {
+	if err := models.DB.Where("req_id = ?", ri.ReqID).Find(&requestEvents).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"message": "Request ID Not Found"})
 		return
 	}
@@ -39,7 +39,7 @@ func ApproveRejectIssueRequest(c *gin.Context) {
 	}
 
 	var book models.BookInventory
-	if err := models.DB.Where("isbn = ?", requestEvents.BookID).First(&book).Error; err != nil {
+	if err := models.DB.Where("isbn = ?", requestEvents.BookID).Find(&book).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "Book is not available "})
 		return
 	}

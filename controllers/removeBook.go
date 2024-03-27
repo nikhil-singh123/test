@@ -35,7 +35,7 @@ func RemoveBook(c *gin.Context) {
 		// }
 		n := nb.NumberBook
 		fmt.Println(n)
-		if err := models.DB.Where("ISBN = ?", b.ISBN).First(&b).Error; err != nil {
+		if err := models.DB.Where("ISBN = ?", b.ISBN).Find(&b).Error; err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"message": "server error"})
 			return
 		}
